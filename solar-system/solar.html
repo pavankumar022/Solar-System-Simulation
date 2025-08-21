@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solar System Simulation</title>
+<style>
+  body {
+    margin: 0;
+    background: radial-gradient(circle at bottom, #000010, #000000);
+    overflow: hidden;
+    color: white;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  h1 {
+    text-align: center;
+    color: #ffffff;
+    margin: 15px 0;
+    font-size: 3vw;   /* adjusts based on screen size */
+    text-shadow: 0px 0px 15px cyan;
+  }
+
+  .solar-system {
+    position: relative;
+    flex: 1;
+    width: 100vmin;  /* ensures it's always square */
+    height: 100vmin;
+  }
+
+  .orbit {
+    position: absolute;
+    border: 1px dashed rgba(255,255,255,0.3);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: rotate 40s linear infinite;
+  }
+
+  .planet {
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255,255,255,0.6);
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+  }
+
+  .planet:hover {
+    box-shadow: 0 0 25px cyan;
+    transform: scale(1.2) translate(-50%, -50%);
+  }
+
+  .sun {
+    width: 8vmin;
+    height: 8vmin;
+    background: radial-gradient(circle, yellow, orange, red);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 40px yellow, 0 0 80px orange;
+    cursor: pointer;
+  }
+
+  @keyframes rotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  /* Orbits using vmin (relative to screen) */
+  .orbit.mercury { width: 15vmin; height: 15vmin; animation-duration: 6s; }
+  .orbit.venus   { width: 22vmin; height: 22vmin; animation-duration: 12s; }
+  .orbit.earth   { width: 30vmin; height: 30vmin; animation-duration: 20s; }
+  .orbit.mars    { width: 38vmin; height: 38vmin; animation-duration: 30s; }
+  .orbit.jupiter { width: 50vmin; height: 50vmin; animation-duration: 50s; }
+  .orbit.saturn  { width: 60vmin; height: 60vmin; animation-duration: 70s; }
+  .orbit.uranus  { width: 70vmin; height: 70vmin; animation-duration: 90s; }
+  .orbit.neptune { width: 80vmin; height: 80vmin; animation-duration: 110s; }
+
+  /* Planets scale with vmin */
+  .planet.mercury { width: 1.2vmin; height: 1.2vmin; background: gray; top: 50%; left: 100%; }
+  .planet.venus   { width: 2vmin; height: 2vmin; background: orange; top: 50%; left: 100%; }
+  .planet.earth   { width: 2.2vmin; height: 2.2vmin; background: linear-gradient(blue, green); top: 50%; left: 100%; }
+  .planet.mars    { width: 1.6vmin; height: 1.6vmin; background: red; top: 50%; left: 100%; }
+  .planet.jupiter { width: 4vmin; height: 4vmin; background: sandybrown; top: 50%; left: 100%; }
+  .planet.saturn  { width: 3.4vmin; height: 3.4vmin; background: pink; top: 50%; left: 100%; }
+  .planet.uranus  { width: 2.8vmin; height: 2.8vmin; background: cyan; top: 50%; left: 100%; }
+  .planet.neptune { width: 2.6vmin; height: 2.6vmin; background: violet; top: 50%; left: 100%; }
+</style>
+</head>
+<body>
+  <h1>☀ Solar System Simulation ☀</h1>
+  <div class="solar-system">
+    <div class="sun" onclick="glow(this)"></div>
+
+    <div class="orbit mercury"><div class="planet mercury" onclick="glow(this)"></div></div>
+    <div class="orbit venus"><div class="planet venus" onclick="glow(this)"></div></div>
+    <div class="orbit earth"><div class="planet earth" onclick="glow(this)"></div></div>
+    <div class="orbit mars"><div class="planet mars" onclick="glow(this)"></div></div>
+    <div class="orbit jupiter"><div class="planet jupiter" onclick="glow(this)"></div></div>
+    <div class="orbit saturn"><div class="planet saturn" onclick="glow(this)"></div></div>
+    <div class="orbit uranus"><div class="planet uranus" onclick="glow(this)"></div></div>
+    <div class="orbit neptune"><div class="planet neptune" onclick="glow(this)"></div></div>
+  </div>
+
+<script>
+function glow(planet) {
+  planet.style.boxShadow = "0 0 30px white, 0 0 50px cyan";
+  setTimeout(() => {
+    planet.style.boxShadow = "0 0 10px rgba(255,255,255,0.6)";
+  }, 1500);
+}
+</script>
+</body>
+</html>
